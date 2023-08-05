@@ -1,0 +1,13 @@
+<Configuration>
+<Add OfficeClientEdition="64" Channel="SemiAnnual">
+<Product ID="O365ProPlusRetail">
+<Language ID="MatchOS" />
+<ExcludeApp ID="Groove" />
+<ExcludeApp ID="Lync" />
+<ExcludeApp ID="InfoPath" />
+<ExcludeApp ID="SharePointDesigner" />
+</Product>
+</Add>
+<Updates Enabled="TRUE"/>
+<Display Level="FULL" AcceptEULA="TRUE" />
+</Configuration>
