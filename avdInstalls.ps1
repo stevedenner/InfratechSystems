@@ -101,6 +101,8 @@ Invoke-WebRequest -Uri $ODTUri.href -OutFile c:\build\officedeploymenttool.exe
 
 c:\build\officedeploymenttool.exe /quiet /extract:.
 
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/configuration-Office365-x64-inf.xml" -OutFile c:\build\configuration-Office365-x64-inf.xml
+
 c:\build\setup.exe /download configuration-Office365-x64-inf.xml
 c:\build\setup.exe /configure configuration-Office365-x64-inf.xml
 
