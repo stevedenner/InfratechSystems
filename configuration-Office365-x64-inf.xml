@@ -7,6 +7,10 @@
 <ExcludeApp ID="InfoPath" />
 <ExcludeApp ID="SharePointDesigner" />
 </Product>
+<Product ID="VisioProRetail">
+<Language ID="MatchInstalled" TargetProduct="All" />
+<ExcludeApp ID="Groove" />
+</Product>
 </Add>
 <Updates Enabled="TRUE"/>
 <Display Level="FULL" AcceptEULA="TRUE" />
