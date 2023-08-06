@@ -99,6 +99,8 @@ finally {
 Write-Host "Downloading latest version of Office 365 Deployment Tool (ODT)."
 Invoke-WebRequest -Uri $ODTUri.href -OutFile c:\build\officedeploymenttool.exe
 
+sleep 20
+
 Write-Host "Extracting ODT"
 c:\build\officedeploymenttool.exe /quiet /extract:.
 
