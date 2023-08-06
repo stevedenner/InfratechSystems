@@ -113,7 +113,8 @@ choco install fslogix -Y
 Write-host "Installing Updates"
 powershell -ExecutionPolicy Unrestricted Install-PackageProvider Nuget -force;Set-PSRepository PSGallery -installationPolicy Trusted;Install-Module PSWindowsUpdate -confirm:$false ;Get-WindowsUpdate -AcceptAll -Install -AutoReboot
 
-
+Write-Host "Downloading finalise script"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/finalise.cmd" -OutFile c:\build\finalise.cmd
 
 
 Stop-Transcript
