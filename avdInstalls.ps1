@@ -76,8 +76,8 @@ c:\build\officedeploymenttool.exe /quiet /extract:c:\Build\
 
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/configuration-Office365-x64-inf.xml" -OutFile c:\build\configuration-Office365-x64-inf.xml
 
-c:\build\setup.exe /download configuration-Office365-x64-inf.xml
-c:\build\setup.exe /configure configuration-Office365-x64-inf.xml
+c:\build\setup.exe /download c:\build\configuration-Office365-x64-inf.xml
+c:\build\setup.exe /configure c:\build\configuration-Office365-x64-inf.xml
 
 Write-host "Installing Chocolatey"
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
