@@ -50,6 +50,35 @@ Get-AppxProvisionedPackage -online |where-object {$_.DisplayName -like "Microsof
 Get-AppxProvisionedPackage -online |where-object {$_.DisplayName -like "Microsoft.BingWeather"}|Remove-AppxProvisionedPackage -online
 Get-AppxProvisionedPackage -online |where-object {$_.DisplayName -like "Microsoft.BingNews"}|Remove-AppxProvisionedPackage -online
 
+Write-Host "Installing Office"
+
+#Download latest ODT and extract
+$url = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117"
+try {
+    $response = Invoke-WebRequest -UseBasicParsing -Uri $url -ErrorAction SilentlyContinue
+}
+catch {
+    Throw "Failed to connect to ODT: $url with error $_."
+    Break
+}
+finally {
+    $ODTUri = $response.links | Where-Object {$_.outerHTML -like "*click here to download manually*"}
+    Write-Output $ODTUri.href
+}
+
+Write-Host "Downloading latest version of Office 365 Deployment Tool (ODT)."
+Invoke-WebRequest -Uri $ODTUri.href -OutFile c:\build\officedeploymenttool.exe
+
+sleep 20
+
+Write-Host "Extracting ODT"
+c:\build\officedeploymenttool.exe /quiet /extract:c:\Build\
+
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/configuration-Office365-x64-inf.xml" -OutFile c:\build\configuration-Office365-x64-inf.xml
+
+c:\build\setup.exe /download configuration-Office365-x64-inf.xml
+c:\build\setup.exe /configure configuration-Office365-x64-inf.xml
+
 Write-host "Installing Chocolatey"
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 
@@ -79,35 +108,6 @@ choco install winscp -Y
 
 Write-host "Installing FSLogix"
 choco install fslogix -Y
-
-Write-Host "Installing Office"
-
-#Download latest ODT and extract
-$url = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=49117"
-try {
-    $response = Invoke-WebRequest -UseBasicParsing -Uri $url -ErrorAction SilentlyContinue
-}
-catch {
-    Throw "Failed to connect to ODT: $url with error $_."
-    Break
-}
-finally {
-    $ODTUri = $response.links | Where-Object {$_.outerHTML -like "*click here to download manually*"}
-    Write-Output $ODTUri.href
-}
-
-Write-Host "Downloading latest version of Office 365 Deployment Tool (ODT)."
-Invoke-WebRequest -Uri $ODTUri.href -OutFile c:\build\officedeploymenttool.exe
-
-sleep 20
-
-Write-Host "Extracting ODT"
-c:\build\officedeploymenttool.exe /quiet /extract:.
-
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/configuration-Office365-x64-inf.xml" -OutFile c:\build\configuration-Office365-x64-inf.xml
-
-c:\build\setup.exe /download configuration-Office365-x64-inf.xml
-c:\build\setup.exe /configure configuration-Office365-x64-inf.xml
 
 Write-host "Installing Updates"
 powershell -ExecutionPolicy Unrestricted Install-PackageProvider Nuget -force;Set-PSRepository PSGallery -installationPolicy Trusted;Install-Module PSWindowsUpdate -confirm:$false ;Get-WindowsUpdate -AcceptAll -Install -AutoReboot
