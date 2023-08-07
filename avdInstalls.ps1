@@ -120,7 +120,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechS
 Write-Host "Copying custom files"
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/InfraTech_Wallpaper_blue1.jpg" -OutFile c:\Windows\InfraTech_Wallpaper_blue1.jpg
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/InfraTech_Wallpaper_blue1.jpg" -OutFile C:\Windows\Web\Wallpaper\Windows\img0.jpg
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/lockscreen.jpg" -OutFile C:\Windows\Lockscreen.jpg
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/LockScreen.jpg" -OutFile C:\Windows\Lockscreen.jpg
 
 
 
