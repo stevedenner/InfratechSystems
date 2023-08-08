@@ -122,6 +122,11 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechS
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/InfraTech_Wallpaper_blue1.jpg" -OutFile C:\Windows\Web\Wallpaper\Windows\img0.jpg
 Invoke-WebRequest -Uri "https://raw.githubusercontent.com/stevedenner/InfratechSystems/main/LockScreen.jpg" -OutFile C:\Windows\Lockscreen.jpg
 
+Write-Host "Setting Teams optimisation"
+New-Item -Path "HKLM:\SOFTWARE\Microsoft\Teams" -Force
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Teams" -Name IsWVDEnvironment -PropertyType DWORD -Value 1 -Force
 
+Invoke-WebRequest -Uri "https://aka.ms/msrdcwebrtcsvc/msi" -OutFile c:\build\MsRdcWebRTCSvc_HostSetup.msi
+msiexec /i c:\build\MsRdcWebRTCSvc_HostSetup.msi /qn
 
 Stop-Transcript
