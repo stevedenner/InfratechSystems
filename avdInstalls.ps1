@@ -129,4 +129,12 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Teams" -Name IsWVDEnvironment -
 Invoke-WebRequest -Uri "https://aka.ms/msrdcwebrtcsvc/msi" -OutFile c:\build\MsRdcWebRTCSvc_HostSetup.msi
 msiexec /i c:\build\MsRdcWebRTCSvc_HostSetup.msi /qn
 
+#Downloading Defender onboarding script
+Invoke-WebRequest -Uri "https://onboardingpackagescusprd.blob.core.windows.net/vdi/b4e68314-62a1-47e3-bb3c-354ff6fee77b-2023-02-9--15-20-29/WindowsDefenderATPOnboardingPackage.zip?skoid=b17d0e6a-13c5-42f4-9624-bee3e969da6a&sktid=124edf19-b350-4797-aefc-3206115ffdb3&skt=2023-09-02T15%3A05%3A30Z&ske=2023-09-02T16%3A20%3A30Z&sks=b&skv=2021-08-06&sv=2021-08-06&st=2023-09-02T15%3A19%3A30Z&se=2023-09-02T15%3A25%3A30Z&sr=b&sp=r&sig=i49iayw3tukaW4Fw75gc%2FW9PTpBl%2FnO9tx67neqF6Uw%3D"  -OutFile C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip
+Expand-Acrhive -Path C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip -DestinationPath C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\
+
+Remove-item C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip
+
+
+
 Stop-Transcript
