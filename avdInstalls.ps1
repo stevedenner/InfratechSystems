@@ -136,7 +136,6 @@ Invoke-WebRequest -Uri "https://github.com/stevedenner/InfratechSystems/raw/main
 Expand-Archive -Path C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip -DestinationPath C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\
 
 Remove-item C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip
-Remove-item C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingScript.cmd
 
 if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup") -ne $true) {  New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup" -force -ea SilentlyContinue };
 if((Test-Path -LiteralPath "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\0") -ne $true) {  New-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\0" -force -ea SilentlyContinue };
