@@ -141,5 +141,5 @@ Expand-Archive -Path C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\Win
 Remove-item C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip
 
 #Install AzureAD module
-Install-Module AzureAD
+Install-Module AzureAD -Confirm:$false
 Stop-Transcript
