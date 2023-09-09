@@ -140,6 +140,8 @@ Expand-Archive -Path C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\Win
 
 Remove-item C:\WINDOWS\System32\GroupPolicy\Machine\Scripts\Startup\WindowsDefenderATPOnboardingPackage.zip
 
-#Install AzureAD module
+#Install Azure PS modules
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+install-Module az -Confirm:$false
 Install-Module AzureAD -Confirm:$false
 Stop-Transcript
