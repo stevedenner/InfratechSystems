@@ -111,6 +111,9 @@ choco install winscp -Y
 Write-host "Installing FSLogix"
 choco install fslogix -Y
 
+Write-Host "Installing Rule Editor"
+choco install fslogix-rule
+
 Write-host "Installing Updates"
 powershell -ExecutionPolicy Unrestricted Install-PackageProvider Nuget -force;Set-PSRepository PSGallery -installationPolicy Trusted;Install-Module PSWindowsUpdate -confirm:$false ;Get-WindowsUpdate -AcceptAll -Install -AutoReboot
 
